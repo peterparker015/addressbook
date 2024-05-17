@@ -1,0 +1,19 @@
+pipeline {
+    agent { label 'slave1' }
+
+    stages {
+        stage('SCM Checkout') {
+            steps {
+                echo 'Perform SCM Check-Out'
+				echo 'Cloning Java Maven App Code'
+				git 'https://github.com/peterparker015/addressbook.git'
+            }
+        }
+        stage('Java Application Build') {
+            steps {
+                echo 'Perform Java Maven Application Build'
+                sh 'mvn clean package'
+            }
+        }
+     }
+}
